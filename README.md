@@ -1,5 +1,6 @@
 # 💊 Tabletka
 
+An app to find the availability of pills in different pharmacies
 
 ### 🧩 Apps
 
