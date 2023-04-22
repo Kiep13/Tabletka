@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  postgres:
+    image: "postgres:15.2"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+    networks:
+      default-network:
+  pgadmin:
+    image: "dpage/pgadmin4:7.0"
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
+    networks:
+      default-network:
+
+networks:
+  default-network:
+    name: default-network

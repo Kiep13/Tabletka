@@ -37,3 +37,6 @@ yarn-error.log*
 
 .idea
 notes
+.gitsecret/keys/random_seed
+!*.secret
+docker/dev.env
