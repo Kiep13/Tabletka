@@ -40,6 +40,6 @@ To build all apps and packages, run the following command:
 yarn build
 ```
 
-### Useful commands
+### 📃 Useful commands
  
 You can find other commands connected to used frameworks & libraries [here](./useful-commands.md)
