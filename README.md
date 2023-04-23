@@ -39,3 +39,7 @@ To build all apps and packages, run the following command:
 ```sh
 yarn build
 ```
+
+### Useful commands
+ 
+You can find other commands connected to used frameworks & libraries [here](./useful-commands.md)

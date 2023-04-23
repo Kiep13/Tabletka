@@ -40,3 +40,4 @@ notes
 .gitsecret/keys/random_seed
 !*.secret
 docker/dev.env
+apps/api/environments/environment.ts

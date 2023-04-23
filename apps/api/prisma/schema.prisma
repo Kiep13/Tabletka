@@ -1,0 +1,57 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "@prisma/client"
+  binaryTargets   = "native"
+}
+
+enum PharmaceuticalForm {
+  Tablet
+  Capsule
+  Solution
+  Injection
+  Ointment
+  Syrup
+  Patch
+  Suppository
+  Powder
+}
+
+model Medicine {
+  id    Int     @id @default(autoincrement())
+  title String  @unique
+  price  Int
+  pharmaceuticalForm PharmaceuticalForm
+  description String
+  prescribedOnly Boolean @default(false)
+  assortment Assortment[]
+}
+
+model Organization {
+  id    Int     @id @default(autoincrement())
+  title String  @unique
+  pharmacies Pharmacy[]
+}
+
+model Pharmacy {
+  id    Int     @id @default(autoincrement())
+  organizationId Int
+  organization Organization @relation(fields: [organizationId], references: [id])
+  address String
+  assortment Assortment[]
+}
+
+model Assortment {
+  id    Int     @id @default(autoincrement())
+  medicineId Int
+  medicine Medicine @relation(fields: [medicineId], references: [id])
+  pharmacyId Int
+  pharmacy Pharmacy @relation(fields: [pharmacyId], references: [id])
+  amount Int
+}
+
+
