@@ -10,3 +10,8 @@ prisma migrate dev --name migration-name
 ```sh
 prisma migrate deploy
 ```
+
+Update generated prisma client (!need to make every time after schema change to keep it up to date to `@prisma/client`):
+```sh
+prisma generate
+```

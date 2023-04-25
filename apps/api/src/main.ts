@@ -1,9 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+
+import { PrismaService } from './core/prisma/prisma.service';
 import { environment } from '../environments';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   await app.listen(environment.port);
+
+  const prismaService = app.get(PrismaService);
+  await prismaService.enableShutdownHooks(app);
 }
 bootstrap();
