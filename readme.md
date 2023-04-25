@@ -44,4 +44,4 @@ yarn build
 
 ### 📃 Useful commands
  
-You can find other commands connected to used frameworks & libraries [here](./useful-commands.md)
+You can find other commands connected to used frameworks & libraries [here](docs/useful-commands.md)
