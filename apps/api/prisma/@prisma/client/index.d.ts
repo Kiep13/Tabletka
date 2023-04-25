@@ -19,7 +19,6 @@ export type PrismaPromise<T> = runtime.Types.Public.PrismaPromise<T>
 export type Medicine = {
   id: number
   title: string
-  price: number
   pharmaceuticalForm: PharmaceuticalForm
   description: string
   prescribedOnly: boolean
@@ -53,6 +52,7 @@ export type Assortment = {
   medicineId: number
   pharmacyId: number
   amount: number
+  price: number
 }
 
 
@@ -1015,18 +1015,15 @@ export namespace Prisma {
 
   export type MedicineAvgAggregateOutputType = {
     id: number | null
-    price: number | null
   }
 
   export type MedicineSumAggregateOutputType = {
     id: number | null
-    price: number | null
   }
 
   export type MedicineMinAggregateOutputType = {
     id: number | null
     title: string | null
-    price: number | null
     pharmaceuticalForm: PharmaceuticalForm | null
     description: string | null
     prescribedOnly: boolean | null
@@ -1035,7 +1032,6 @@ export namespace Prisma {
   export type MedicineMaxAggregateOutputType = {
     id: number | null
     title: string | null
-    price: number | null
     pharmaceuticalForm: PharmaceuticalForm | null
     description: string | null
     prescribedOnly: boolean | null
@@ -1044,7 +1040,6 @@ export namespace Prisma {
   export type MedicineCountAggregateOutputType = {
     id: number
     title: number
-    price: number
     pharmaceuticalForm: number
     description: number
     prescribedOnly: number
@@ -1054,18 +1049,15 @@ export namespace Prisma {
 
   export type MedicineAvgAggregateInputType = {
     id?: true
-    price?: true
   }
 
   export type MedicineSumAggregateInputType = {
     id?: true
-    price?: true
   }
 
   export type MedicineMinAggregateInputType = {
     id?: true
     title?: true
-    price?: true
     pharmaceuticalForm?: true
     description?: true
     prescribedOnly?: true
@@ -1074,7 +1066,6 @@ export namespace Prisma {
   export type MedicineMaxAggregateInputType = {
     id?: true
     title?: true
-    price?: true
     pharmaceuticalForm?: true
     description?: true
     prescribedOnly?: true
@@ -1083,7 +1074,6 @@ export namespace Prisma {
   export type MedicineCountAggregateInputType = {
     id?: true
     title?: true
-    price?: true
     pharmaceuticalForm?: true
     description?: true
     prescribedOnly?: true
@@ -1180,7 +1170,6 @@ export namespace Prisma {
   export type MedicineGroupByOutputType = {
     id: number
     title: string
-    price: number
     pharmaceuticalForm: PharmaceuticalForm
     description: string
     prescribedOnly: boolean
@@ -1208,7 +1197,6 @@ export namespace Prisma {
   export type MedicineSelect = {
     id?: boolean
     title?: boolean
-    price?: boolean
     pharmaceuticalForm?: boolean
     description?: boolean
     prescribedOnly?: boolean
@@ -3970,6 +3958,7 @@ export namespace Prisma {
     medicineId: number | null
     pharmacyId: number | null
     amount: number | null
+    price: number | null
   }
 
   export type AssortmentSumAggregateOutputType = {
@@ -3977,6 +3966,7 @@ export namespace Prisma {
     medicineId: number | null
     pharmacyId: number | null
     amount: number | null
+    price: number | null
   }
 
   export type AssortmentMinAggregateOutputType = {
@@ -3984,6 +3974,7 @@ export namespace Prisma {
     medicineId: number | null
     pharmacyId: number | null
     amount: number | null
+    price: number | null
   }
 
   export type AssortmentMaxAggregateOutputType = {
@@ -3991,6 +3982,7 @@ export namespace Prisma {
     medicineId: number | null
     pharmacyId: number | null
     amount: number | null
+    price: number | null
   }
 
   export type AssortmentCountAggregateOutputType = {
@@ -3998,6 +3990,7 @@ export namespace Prisma {
     medicineId: number
     pharmacyId: number
     amount: number
+    price: number
     _all: number
   }
 
@@ -4007,6 +4000,7 @@ export namespace Prisma {
     medicineId?: true
     pharmacyId?: true
     amount?: true
+    price?: true
   }
 
   export type AssortmentSumAggregateInputType = {
@@ -4014,6 +4008,7 @@ export namespace Prisma {
     medicineId?: true
     pharmacyId?: true
     amount?: true
+    price?: true
   }
 
   export type AssortmentMinAggregateInputType = {
@@ -4021,6 +4016,7 @@ export namespace Prisma {
     medicineId?: true
     pharmacyId?: true
     amount?: true
+    price?: true
   }
 
   export type AssortmentMaxAggregateInputType = {
@@ -4028,6 +4024,7 @@ export namespace Prisma {
     medicineId?: true
     pharmacyId?: true
     amount?: true
+    price?: true
   }
 
   export type AssortmentCountAggregateInputType = {
@@ -4035,6 +4032,7 @@ export namespace Prisma {
     medicineId?: true
     pharmacyId?: true
     amount?: true
+    price?: true
     _all?: true
   }
 
@@ -4130,6 +4128,7 @@ export namespace Prisma {
     medicineId: number
     pharmacyId: number
     amount: number
+    price: number
     _count: AssortmentCountAggregateOutputType | null
     _avg: AssortmentAvgAggregateOutputType | null
     _sum: AssortmentSumAggregateOutputType | null
@@ -4156,6 +4155,7 @@ export namespace Prisma {
     medicineId?: boolean
     pharmacyId?: boolean
     amount?: boolean
+    price?: boolean
     medicine?: boolean | MedicineArgs
     pharmacy?: boolean | PharmacyArgs
   }
@@ -4938,7 +4938,8 @@ export namespace Prisma {
     id: 'id',
     medicineId: 'medicineId',
     pharmacyId: 'pharmacyId',
-    amount: 'amount'
+    amount: 'amount',
+    price: 'price'
   };
 
   export type AssortmentScalarFieldEnum = (typeof AssortmentScalarFieldEnum)[keyof typeof AssortmentScalarFieldEnum]
@@ -4947,7 +4948,6 @@ export namespace Prisma {
   export const MedicineScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    price: 'price',
     pharmaceuticalForm: 'pharmaceuticalForm',
     description: 'description',
     prescribedOnly: 'prescribedOnly'
@@ -5010,7 +5010,6 @@ export namespace Prisma {
     NOT?: Enumerable<MedicineWhereInput>
     id?: IntFilter | number
     title?: StringFilter | string
-    price?: IntFilter | number
     pharmaceuticalForm?: EnumPharmaceuticalFormFilter | PharmaceuticalForm
     description?: StringFilter | string
     prescribedOnly?: BoolFilter | boolean
@@ -5020,7 +5019,6 @@ export namespace Prisma {
   export type MedicineOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    price?: SortOrder
     pharmaceuticalForm?: SortOrder
     description?: SortOrder
     prescribedOnly?: SortOrder
@@ -5035,7 +5033,6 @@ export namespace Prisma {
   export type MedicineOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
-    price?: SortOrder
     pharmaceuticalForm?: SortOrder
     description?: SortOrder
     prescribedOnly?: SortOrder
@@ -5052,7 +5049,6 @@ export namespace Prisma {
     NOT?: Enumerable<MedicineScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
     title?: StringWithAggregatesFilter | string
-    price?: IntWithAggregatesFilter | number
     pharmaceuticalForm?: EnumPharmaceuticalFormWithAggregatesFilter | PharmaceuticalForm
     description?: StringWithAggregatesFilter | string
     prescribedOnly?: BoolWithAggregatesFilter | boolean
@@ -5147,6 +5143,7 @@ export namespace Prisma {
     medicineId?: IntFilter | number
     pharmacyId?: IntFilter | number
     amount?: IntFilter | number
+    price?: FloatFilter | number
     medicine?: XOR<MedicineRelationFilter, MedicineWhereInput>
     pharmacy?: XOR<PharmacyRelationFilter, PharmacyWhereInput>
   }
@@ -5156,6 +5153,7 @@ export namespace Prisma {
     medicineId?: SortOrder
     pharmacyId?: SortOrder
     amount?: SortOrder
+    price?: SortOrder
     medicine?: MedicineOrderByWithRelationInput
     pharmacy?: PharmacyOrderByWithRelationInput
   }
@@ -5169,6 +5167,7 @@ export namespace Prisma {
     medicineId?: SortOrder
     pharmacyId?: SortOrder
     amount?: SortOrder
+    price?: SortOrder
     _count?: AssortmentCountOrderByAggregateInput
     _avg?: AssortmentAvgOrderByAggregateInput
     _max?: AssortmentMaxOrderByAggregateInput
@@ -5184,11 +5183,11 @@ export namespace Prisma {
     medicineId?: IntWithAggregatesFilter | number
     pharmacyId?: IntWithAggregatesFilter | number
     amount?: IntWithAggregatesFilter | number
+    price?: FloatWithAggregatesFilter | number
   }
 
   export type MedicineCreateInput = {
     title: string
-    price: number
     pharmaceuticalForm: PharmaceuticalForm
     description: string
     prescribedOnly?: boolean
@@ -5198,7 +5197,6 @@ export namespace Prisma {
   export type MedicineUncheckedCreateInput = {
     id?: number
     title: string
-    price: number
     pharmaceuticalForm: PharmaceuticalForm
     description: string
     prescribedOnly?: boolean
@@ -5207,7 +5205,6 @@ export namespace Prisma {
 
   export type MedicineUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
     pharmaceuticalForm?: EnumPharmaceuticalFormFieldUpdateOperationsInput | PharmaceuticalForm
     description?: StringFieldUpdateOperationsInput | string
     prescribedOnly?: BoolFieldUpdateOperationsInput | boolean
@@ -5217,7 +5214,6 @@ export namespace Prisma {
   export type MedicineUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
     pharmaceuticalForm?: EnumPharmaceuticalFormFieldUpdateOperationsInput | PharmaceuticalForm
     description?: StringFieldUpdateOperationsInput | string
     prescribedOnly?: BoolFieldUpdateOperationsInput | boolean
@@ -5227,7 +5223,6 @@ export namespace Prisma {
   export type MedicineCreateManyInput = {
     id?: number
     title: string
-    price: number
     pharmaceuticalForm: PharmaceuticalForm
     description: string
     prescribedOnly?: boolean
@@ -5235,7 +5230,6 @@ export namespace Prisma {
 
   export type MedicineUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
     pharmaceuticalForm?: EnumPharmaceuticalFormFieldUpdateOperationsInput | PharmaceuticalForm
     description?: StringFieldUpdateOperationsInput | string
     prescribedOnly?: BoolFieldUpdateOperationsInput | boolean
@@ -5244,7 +5238,6 @@ export namespace Prisma {
   export type MedicineUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
     pharmaceuticalForm?: EnumPharmaceuticalFormFieldUpdateOperationsInput | PharmaceuticalForm
     description?: StringFieldUpdateOperationsInput | string
     prescribedOnly?: BoolFieldUpdateOperationsInput | boolean
@@ -5330,6 +5323,7 @@ export namespace Prisma {
 
   export type AssortmentCreateInput = {
     amount: number
+    price: number
     medicine: MedicineCreateNestedOneWithoutAssortmentInput
     pharmacy: PharmacyCreateNestedOneWithoutAssortmentInput
   }
@@ -5339,10 +5333,12 @@ export namespace Prisma {
     medicineId: number
     pharmacyId: number
     amount: number
+    price: number
   }
 
   export type AssortmentUpdateInput = {
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     medicine?: MedicineUpdateOneRequiredWithoutAssortmentNestedInput
     pharmacy?: PharmacyUpdateOneRequiredWithoutAssortmentNestedInput
   }
@@ -5352,6 +5348,7 @@ export namespace Prisma {
     medicineId?: IntFieldUpdateOperationsInput | number
     pharmacyId?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
   export type AssortmentCreateManyInput = {
@@ -5359,10 +5356,12 @@ export namespace Prisma {
     medicineId: number
     pharmacyId: number
     amount: number
+    price: number
   }
 
   export type AssortmentUpdateManyMutationInput = {
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
   export type AssortmentUncheckedUpdateManyInput = {
@@ -5370,6 +5369,7 @@ export namespace Prisma {
     medicineId?: IntFieldUpdateOperationsInput | number
     pharmacyId?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
   export type IntFilter = {
@@ -5423,7 +5423,6 @@ export namespace Prisma {
   export type MedicineCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    price?: SortOrder
     pharmaceuticalForm?: SortOrder
     description?: SortOrder
     prescribedOnly?: SortOrder
@@ -5431,13 +5430,11 @@ export namespace Prisma {
 
   export type MedicineAvgOrderByAggregateInput = {
     id?: SortOrder
-    price?: SortOrder
   }
 
   export type MedicineMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    price?: SortOrder
     pharmaceuticalForm?: SortOrder
     description?: SortOrder
     prescribedOnly?: SortOrder
@@ -5446,7 +5443,6 @@ export namespace Prisma {
   export type MedicineMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    price?: SortOrder
     pharmaceuticalForm?: SortOrder
     description?: SortOrder
     prescribedOnly?: SortOrder
@@ -5454,7 +5450,6 @@ export namespace Prisma {
 
   export type MedicineSumOrderByAggregateInput = {
     id?: SortOrder
-    price?: SortOrder
   }
 
   export type IntWithAggregatesFilter = {
@@ -5575,6 +5570,17 @@ export namespace Prisma {
     organizationId?: SortOrder
   }
 
+  export type FloatFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedFloatFilter | number
+  }
+
   export type MedicineRelationFilter = {
     is?: MedicineWhereInput
     isNot?: MedicineWhereInput
@@ -5590,6 +5596,7 @@ export namespace Prisma {
     medicineId?: SortOrder
     pharmacyId?: SortOrder
     amount?: SortOrder
+    price?: SortOrder
   }
 
   export type AssortmentAvgOrderByAggregateInput = {
@@ -5597,6 +5604,7 @@ export namespace Prisma {
     medicineId?: SortOrder
     pharmacyId?: SortOrder
     amount?: SortOrder
+    price?: SortOrder
   }
 
   export type AssortmentMaxOrderByAggregateInput = {
@@ -5604,6 +5612,7 @@ export namespace Prisma {
     medicineId?: SortOrder
     pharmacyId?: SortOrder
     amount?: SortOrder
+    price?: SortOrder
   }
 
   export type AssortmentMinOrderByAggregateInput = {
@@ -5611,6 +5620,7 @@ export namespace Prisma {
     medicineId?: SortOrder
     pharmacyId?: SortOrder
     amount?: SortOrder
+    price?: SortOrder
   }
 
   export type AssortmentSumOrderByAggregateInput = {
@@ -5618,6 +5628,23 @@ export namespace Prisma {
     medicineId?: SortOrder
     pharmacyId?: SortOrder
     amount?: SortOrder
+    price?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedFloatWithAggregatesFilter | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedFloatFilter
+    _min?: NestedFloatFilter
+    _max?: NestedFloatFilter
   }
 
   export type AssortmentCreateNestedManyWithoutMedicineInput = {
@@ -5636,14 +5663,6 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type EnumPharmaceuticalFormFieldUpdateOperationsInput = {
@@ -5666,6 +5685,14 @@ export namespace Prisma {
     update?: Enumerable<AssortmentUpdateWithWhereUniqueWithoutMedicineInput>
     updateMany?: Enumerable<AssortmentUpdateManyWithWhereWithoutMedicineInput>
     deleteMany?: Enumerable<AssortmentScalarWhereInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type AssortmentUncheckedUpdateManyWithoutMedicineNestedInput = {
@@ -5792,6 +5819,14 @@ export namespace Prisma {
     connect?: PharmacyWhereUniqueInput
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type MedicineUpdateOneRequiredWithoutAssortmentNestedInput = {
     create?: XOR<MedicineCreateWithoutAssortmentInput, MedicineUncheckedCreateWithoutAssortmentInput>
     connectOrCreate?: MedicineCreateOrConnectWithoutAssortmentInput
@@ -5907,8 +5942,25 @@ export namespace Prisma {
     _max?: NestedBoolFilter
   }
 
+  export type NestedFloatWithAggregatesFilter = {
+    equals?: number
+    in?: Enumerable<number>
+    notIn?: Enumerable<number>
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedFloatWithAggregatesFilter | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedFloatFilter
+    _min?: NestedFloatFilter
+    _max?: NestedFloatFilter
+  }
+
   export type AssortmentCreateWithoutMedicineInput = {
     amount: number
+    price: number
     pharmacy: PharmacyCreateNestedOneWithoutAssortmentInput
   }
 
@@ -5916,6 +5968,7 @@ export namespace Prisma {
     id?: number
     pharmacyId: number
     amount: number
+    price: number
   }
 
   export type AssortmentCreateOrConnectWithoutMedicineInput = {
@@ -5952,6 +6005,7 @@ export namespace Prisma {
     medicineId?: IntFilter | number
     pharmacyId?: IntFilter | number
     amount?: IntFilter | number
+    price?: FloatFilter | number
   }
 
   export type PharmacyCreateWithoutOrganizationInput = {
@@ -6016,6 +6070,7 @@ export namespace Prisma {
 
   export type AssortmentCreateWithoutPharmacyInput = {
     amount: number
+    price: number
     medicine: MedicineCreateNestedOneWithoutAssortmentInput
   }
 
@@ -6023,6 +6078,7 @@ export namespace Prisma {
     id?: number
     medicineId: number
     amount: number
+    price: number
   }
 
   export type AssortmentCreateOrConnectWithoutPharmacyInput = {
@@ -6067,7 +6123,6 @@ export namespace Prisma {
 
   export type MedicineCreateWithoutAssortmentInput = {
     title: string
-    price: number
     pharmaceuticalForm: PharmaceuticalForm
     description: string
     prescribedOnly?: boolean
@@ -6076,7 +6131,6 @@ export namespace Prisma {
   export type MedicineUncheckedCreateWithoutAssortmentInput = {
     id?: number
     title: string
-    price: number
     pharmaceuticalForm: PharmaceuticalForm
     description: string
     prescribedOnly?: boolean
@@ -6110,7 +6164,6 @@ export namespace Prisma {
 
   export type MedicineUpdateWithoutAssortmentInput = {
     title?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
     pharmaceuticalForm?: EnumPharmaceuticalFormFieldUpdateOperationsInput | PharmaceuticalForm
     description?: StringFieldUpdateOperationsInput | string
     prescribedOnly?: BoolFieldUpdateOperationsInput | boolean
@@ -6119,7 +6172,6 @@ export namespace Prisma {
   export type MedicineUncheckedUpdateWithoutAssortmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
     pharmaceuticalForm?: EnumPharmaceuticalFormFieldUpdateOperationsInput | PharmaceuticalForm
     description?: StringFieldUpdateOperationsInput | string
     prescribedOnly?: BoolFieldUpdateOperationsInput | boolean
@@ -6145,10 +6197,12 @@ export namespace Prisma {
     id?: number
     pharmacyId: number
     amount: number
+    price: number
   }
 
   export type AssortmentUpdateWithoutMedicineInput = {
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     pharmacy?: PharmacyUpdateOneRequiredWithoutAssortmentNestedInput
   }
 
@@ -6156,12 +6210,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     pharmacyId?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
   export type AssortmentUncheckedUpdateManyWithoutAssortmentInput = {
     id?: IntFieldUpdateOperationsInput | number
     pharmacyId?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
   export type PharmacyCreateManyOrganizationInput = {
@@ -6189,10 +6245,12 @@ export namespace Prisma {
     id?: number
     medicineId: number
     amount: number
+    price: number
   }
 
   export type AssortmentUpdateWithoutPharmacyInput = {
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
     medicine?: MedicineUpdateOneRequiredWithoutAssortmentNestedInput
   }
 
@@ -6200,6 +6258,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     medicineId?: IntFieldUpdateOperationsInput | number
     amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
   }
 
 

@@ -24,7 +24,6 @@ enum PharmaceuticalForm {
 model Medicine {
   id    Int     @id @default(autoincrement())
   title String  @unique
-  price  Int
   pharmaceuticalForm PharmaceuticalForm
   description String
   prescribedOnly Boolean @default(false)
@@ -52,6 +51,7 @@ model Assortment {
   pharmacyId Int
   pharmacy Pharmacy @relation(fields: [pharmacyId], references: [id])
   amount Int
+  price  Float
 }
 
 

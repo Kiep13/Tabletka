@@ -14,6 +14,8 @@ In apps folder you can see two main repo applications:
 This application uses `PostgreSQL` for storing data and `pgAdmin` for monitoring the previous one. 
 It applied with docker containers, which are conduct `docker-compose`.
 
+For ORM purposes this application uses `Prisma`
+
 ### 🐋 Docker
 
 `docker-compose.yml` stored in `docker` folder. To rollup it, move to this folder and run this:

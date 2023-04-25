@@ -90,13 +90,13 @@ exports.Prisma.AssortmentScalarFieldEnum = {
   id: 'id',
   medicineId: 'medicineId',
   pharmacyId: 'pharmacyId',
-  amount: 'amount'
+  amount: 'amount',
+  price: 'price'
 };
 
 exports.Prisma.MedicineScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  price: 'price',
   pharmaceuticalForm: 'pharmaceuticalForm',
   description: 'description',
   prescribedOnly: 'prescribedOnly'
