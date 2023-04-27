@@ -1,14 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
-
-import { Medicine } from '@prisma/client';
-import { AppService } from './app.service';
+import { Controller, Get, Redirect } from '@nestjs/common';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): Promise<Medicine[]> {
-    return this.appService.getHello();
+  @Redirect('https://nestjs.com', 301)
+  getHello(): void {
+    return;
   }
 }

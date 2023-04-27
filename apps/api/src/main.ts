@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 
-import { PrismaService } from './core/prisma/prisma.service';
+import { PrismaService } from './core/services/prisma.service';
 import { environment } from '../environments';
 import { AppModule } from './app.module';
 
