@@ -34,6 +34,8 @@ To run applications in developer mode, run:
 yarn dev
 ```
 
+Api application uses GraphQL. Its playground is available [here](http://localhost:4000/graphql).
+
 ### 🏗️ Build
 
 To build all apps and packages, run the following command:

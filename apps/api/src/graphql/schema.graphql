@@ -1,0 +1,39 @@
+enum PharmaceuticalForm {
+  Tablet
+  Capsule
+  Solution
+  Injection
+  Ointment
+  Syrup
+  Patch
+  Suppository
+  Powder
+}
+
+type Medicine {
+  id: ID
+  title: String
+  pharmaceuticalForm: PharmaceuticalForm
+  description: String
+  prescribedOnly: Boolean
+}
+
+input CreateMedicineInput {
+  title: String!
+  pharmaceuticalForm: PharmaceuticalForm!
+  description: String!
+  prescribedOnly: Boolean
+}
+
+type Query {
+  medicines: [Medicine]
+}
+
+type Mutation {
+  addMedicine(medicine: CreateMedicineInput): Medicine
+}
+
+schema {
+  query: Query,
+  mutation: Mutation
+}

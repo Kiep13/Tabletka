@@ -1,21 +1,22 @@
-import { Body, Controller, Get, HttpCode, Post } from "@nestjs/common";
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Medicine, Prisma } from '@prisma/client';
+import { HttpCode } from '@nestjs/common';
 
-import { Medicine, Prisma } from "@prisma/client";
 import { MedicineService } from './medicine.service';
 
-@Controller('medicine')
+@Resolver('Medicine')
 export class MedicineController {
   constructor(private readonly medicineService: MedicineService) {}
 
-  @Get()
+  @Query('medicines')
   @HttpCode(200)
   getMedicines(): Promise<Medicine[]> {
     return this.medicineService.getMedicines();
   }
 
-  @Post()
+  @Mutation('addMedicine')
   @HttpCode(201)
-  createMedicine(@Body() data: Prisma.MedicineCreateInput): Promise<Medicine> {
+  createMedicine(@Args('medicine') data: Prisma.MedicineCreateInput): Promise<Medicine> {
     return this.medicineService.createMedicine(data);
   }
 }
