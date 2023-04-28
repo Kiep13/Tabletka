@@ -5,11 +5,13 @@ import { Module } from '@nestjs/common';
 import { CoreModule } from '@core/core.module';
 import { MedicineModule } from '@modules/medicine';
 import { OrganizationModule } from '@modules/organization';
+import { PharmacyModule } from '@modules/pharmacy';
 import { AppController } from './app.controller';
 
 export const ENTITY_MODULES = [
   MedicineModule,
-  OrganizationModule
+  OrganizationModule,
+  PharmacyModule
 ]
 
 @Module({
