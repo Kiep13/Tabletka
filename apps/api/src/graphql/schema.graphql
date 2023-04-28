@@ -18,6 +18,30 @@ type Medicine {
   prescribedOnly: Boolean
 }
 
+type Organization {
+  id: ID
+  title: String
+  pharmacies: [Pharmacy]
+}
+
+type Pharmacy {
+  id: ID
+  organizationId: ID
+  organization: Organization
+  address: String
+  assortment: [Assortment]
+}
+
+type Assortment {
+  id: ID
+  medicineId: ID
+  medicine: Medicine
+  pharmacyId: ID
+  pharmacy: Pharmacy
+  amount: Int
+  price: Float
+}
+
 input CreateMedicineInput {
   title: String!
   pharmaceuticalForm: PharmaceuticalForm!
@@ -25,12 +49,34 @@ input CreateMedicineInput {
   prescribedOnly: Boolean
 }
 
+input CreateOrganizationInput {
+  title: String
+}
+
+input CreatePharmacyInput {
+  organizationId: ID
+  address: String
+}
+
+input CreateAssortmentInput {
+  medicineId: ID
+  pharmacyId: ID
+  amount: ID
+  price: Float
+}
+
 type Query {
-  medicines: [Medicine]
+  medicines: [Medicine],
+  organizations: [Organization],
+  pharmacies: [Pharmacy],
+  assortment: [Assortment]
 }
 
 type Mutation {
   addMedicine(medicine: CreateMedicineInput): Medicine
+  addOrganization(organization: CreateOrganizationInput): Organization
+  addPharmacy(pharmacy: CreatePharmacyInput): Pharmacy
+  addAssortment(assortment: CreateAssortmentInput): Assortment
 }
 
 schema {
