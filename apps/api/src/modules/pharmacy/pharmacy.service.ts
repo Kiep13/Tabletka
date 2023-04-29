@@ -9,7 +9,11 @@ export class PharmacyService {
   constructor(private readonly prismaService: PrismaService) {}
 
   public getPharmacies(): Promise<Pharmacy[]> {
-    return this.prismaService.pharmacy.findMany();
+    return this.prismaService.pharmacy.findMany({
+      include: {
+        organization: true
+      }
+    });
   }
 
   public createPharmacy(data: PharmacyCreateInput): Promise<Pharmacy> {
@@ -21,6 +25,9 @@ export class PharmacyService {
             id: +data.organizationId
           }
         }
+      },
+      include: {
+        organization: true
       }
     });
   }
