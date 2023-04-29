@@ -18,8 +18,6 @@ export class AssortmentService {
   }
 
   public createAssortment(data: AssortmentCreateInput): Promise<Assortment> {
-    console.log(data);
-
     return this.prismaService.assortment.create({
       data: {
         medicine: {
