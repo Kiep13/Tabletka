@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  height: 100%;
+}
+
+.title {
+  font-size: 58px;
+  font-weight: 400;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
