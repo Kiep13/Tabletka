@@ -1,9 +1,17 @@
 .content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 30px;
 
   height: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .title {
@@ -13,5 +21,18 @@
 
 .buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+}
+
+@media only screen and (max-width: 650px) {
+  .image {
+    display: none;
+  }
+
+  .info,
+  .buttons {
+    align-items: center;
+    text-align: center;
+  }
 }

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Head from 'next/head';
 import React from 'react';
 
@@ -11,13 +12,24 @@ export default function Web() {
         <title>Tabletka</title>
       </Head>
       <section className={styles.content}>
-        <section className={styles.title}>
-          <span>Easy way</span><br/>
-          <span>To find your pharmacy</span>
+        <section className={styles.info}>
+          <section className={styles.title}>
+            <span>Easy way</span><br/>
+            <span>To find your pharmacy</span>
+          </section>
+          <section className={styles.buttons}>
+            <span className={'button button__outline'}>Search medicine</span>
+            <span className={'button'}>Show pharmacies</span>
+          </section>
         </section>
-        <section className={styles.buttons}>
-          <span className={'button button__outline'}>Search medicine</span>
-          <span className={'button'}>Show pharmacies</span>
+        <section className={styles.image}>
+          <Image
+            priority
+            src='/images/medicine.png'
+            height={500}
+            width={500}
+            alt=""
+          />
         </section>
       </section>
     </Layout>
