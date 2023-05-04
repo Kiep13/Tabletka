@@ -1,11 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Head from 'next/head';
 import React from 'react';
 
 import { Layout } from '../components/Layout';
 import styles from './index.module.scss';
 
-export default function Web() {
+export default function Home() {
   return (
     <Layout>
       <Head>
@@ -18,7 +19,7 @@ export default function Web() {
             <span>To find your pharmacy</span>
           </section>
           <section className={styles.buttons}>
-            <span className={'button button__outline'}>Search medicine</span>
+            <span className={'button button__outline'}><Link href='/assortment'>Search medicine</Link></span>
             <span className={'button'}>Show pharmacies</span>
           </section>
         </section>

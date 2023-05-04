@@ -1,0 +1,57 @@
+@import '../../../styles/colors.module';
+
+.wrapper {
+  width: 100%;
+  height: 46px;
+
+  position: relative;
+}
+
+.datalist {
+  width: 100%;
+  height: fit-content;
+
+  position: absolute;
+  overflow: hidden;
+
+  border: 3px solid $primary;
+  border-radius: 10px;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+
+  border: 1px solid $primary;
+
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.options {
+  width: 100%;
+  height: fit-content;
+  max-height: 300px;
+
+  overflow-y: scroll;
+}
+
+.option {
+  width: 100%;
+  padding: 10px;
+
+  font-size: 18px;
+
+  background: white;
+  border-bottom: 1px solid $primary;
+  color: black;
+}
+
+.option:hover {
+  background: lighten($primary, 60%);
+}
+
+.option:last-child {
+  border-radius: 0 0 7px 7px;
+}
