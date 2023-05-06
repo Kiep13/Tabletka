@@ -1,12 +1,28 @@
+import { request, gql } from 'graphql-request';
+import { useQuery } from 'react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
 import React from 'react';
 
+import { environment } from '../environments';
 import { Layout } from '../components/Layout';
+import { IMedicineMin } from '../utils/interfaces';
 import styles from './index.module.scss';
 
+
+export interface Data {
+  medicines: IMedicineMin[]
+}
+export const getMedicines = async () => {
+  const query = gql`query {medicines {id, title}}`
+  const data = await request<Data>(environment.url, query)
+  return data.medicines
+}
+
 export default function Home() {
+  const { isLoading, data, error } = useQuery('medicines', getMedicines);
+
   return (
     <Layout>
       <Head>

@@ -6,6 +6,10 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    origin: environment.clientUrl
+  });
+
   await app.listen(environment.port);
 
   const prismaService = app.get(PrismaService);

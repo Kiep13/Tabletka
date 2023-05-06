@@ -44,3 +44,4 @@ notes
 !*.secret
 docker/dev.env
 apps/api/environments/environment.ts
+apps/web/environments/environment.ts
