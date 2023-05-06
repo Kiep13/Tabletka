@@ -15,3 +15,24 @@ Update generated prisma client (!need to make every time after schema change to 
 ```sh
 services generate
 ```
+
+###  ![Git Secret](https://sobolevn.me/git-secret/images/git-secret-big.png)
+
+[Official documentation](https://sobolevn.me/git-secret/)
+
+> Use **Git Bash** to run commands
+
+To add file to get secret:
+```sh
+git-secret add
+```
+
+Encrypt added files:
+```sh
+git-secret hide
+```
+
+Decrypt added files
+```sh
+git-secret reveal
+```
