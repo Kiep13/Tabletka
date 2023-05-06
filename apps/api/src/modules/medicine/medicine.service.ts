@@ -7,8 +7,15 @@ import { PrismaService } from '@core/services';
 export class MedicineService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  public getMedicines(): Promise<Medicine[]> {
-    return this.prismaService.medicine.findMany();
+  public getMedicines(searchTerm: string): Promise<Medicine[]> {
+    return this.prismaService.medicine.findMany({
+      where: {
+        title: {
+          contains: searchTerm,
+          mode: 'insensitive',
+        },
+      }
+    });
   }
 
   public createMedicine(data: Prisma.MedicineCreateInput): Promise<Medicine> {

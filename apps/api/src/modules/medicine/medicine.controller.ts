@@ -10,8 +10,8 @@ export class MedicineController {
 
   @Query('medicines')
   @HttpCode(200)
-  getMedicines(): Promise<Medicine[]> {
-    return this.medicineService.getMedicines();
+  getMedicines(@Args('search') searchTerm: string): Promise<Medicine[]> {
+    return this.medicineService.getMedicines(searchTerm);
   }
 
   @Mutation('addMedicine')

@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request';
 import { useQuery } from 'react-query';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { environment } from '@environments/environment';
 import { IMedicineMin } from '@utils/interfaces';
@@ -11,29 +11,39 @@ import styles from './index.module.scss';
 export interface Data {
   medicines: IMedicineMin[]
 }
-export const getMedicines = async () => {
-  const query = gql`query {medicines {id, title}}`
-  const data = await request<Data>(environment.url, query)
-  return data.medicines
-}
 
 export default function Assortment() {
-  const { isLoading, data, error } = useQuery('medicines', getMedicines);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [medicines, setMedicines] = useState<IMedicineMin[]>([]);
 
-  console.log(isLoading, data, error);
+  const { isLoading, refetch  } = useQuery({
+    queryKey: 'medicines',
+    queryFn: async () => {
+      const query = gql`query GetMedicines($search: String) {
+          medicines(search: $search) {
+              id, title
+          }
+      }`
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+      const data = await request<Data>(environment.url, query, {
+        search: searchTerm
+      });
 
-  if (error) {
-    return <div>Error loading users</div>;
+      setMedicines(data.medicines);
+
+      return data.medicines
+    }
+  });
+
+  const handleDatalistTyping = (value: string) => {
+    setSearchTerm(value);
+    refetch();
   }
 
   return (
     <Layout>
       <section className={styles.content}>
-        <Datalist/>
+        <Datalist options={searchTerm ? medicines : []} handleTyping={handleDatalistTyping}/>
       </section>
     </Layout>
   )
