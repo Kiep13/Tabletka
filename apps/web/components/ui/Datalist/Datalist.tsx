@@ -1,7 +1,7 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useState } from 'react';
 
-import { IDatalistOption, IMedicine, IMedicineMin } from '../../../utils/interfaces';
-import { MOCK_MEDICINES } from './../../../mocks';
+import { IDatalistOption, IMedicine, IMedicineMin } from '@utils/interfaces';
+import { MOCK_MEDICINES } from '@mocks/medicines.mock';
 import styles from './datalist.module.scss';
 
 export function Datalist() {

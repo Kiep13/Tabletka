@@ -1,4 +1,4 @@
-import { IMedicineMin } from '../utils/interfaces';
+import { IMedicineMin } from '@utils/interfaces';
 
 export const MOCK_MEDICINES: IMedicineMin[] = [
   {

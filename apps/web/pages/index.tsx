@@ -5,11 +5,10 @@ import Link from 'next/link';
 import Head from 'next/head';
 import React from 'react';
 
-import { environment } from '../environments';
-import { Layout } from '../components/Layout';
-import { IMedicineMin } from '../utils/interfaces';
+import { environment } from '@environments/environment';
+import { Layout } from '@components/Layout';
+import { IMedicineMin } from '@utils/interfaces';
 import styles from './index.module.scss';
-
 
 export interface Data {
   medicines: IMedicineMin[]
