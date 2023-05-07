@@ -5,6 +5,8 @@ import { useQuery } from 'react-query';
 import { environment } from '@environments/environment';
 import { IDatalistOption, IMedicineMin } from '@utils/interfaces';
 import { Datalist } from '@components/ui/Datalist';
+import { DEFAULT_DELAY } from '@utils/constants';
+import { useDelay } from '@utils/hooks';
 import { IProps } from './props.interface';
 
 interface Data {
@@ -14,6 +16,7 @@ interface Data {
 export function MedicineDatalist({ handleSelection }: IProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [medicines, setMedicines] = useState<IMedicineMin[]>([]);
+  const { setDelay } = useDelay();
 
   const { isLoading, refetch } = useQuery({
     queryKey: 'medicines',
@@ -40,7 +43,7 @@ export function MedicineDatalist({ handleSelection }: IProps) {
 
   const handleDatalistTyping = (value: string): void => {
     setSearchTerm(value);
-    refetch();
+    setDelay(refetch, DEFAULT_DELAY);
   };
 
   const handleDatalistSelection = (value: IDatalistOption): void => {
