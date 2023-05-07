@@ -5,18 +5,23 @@ import { useQuery } from 'react-query';
 import { environment } from '@environments/environment';
 import { IDatalistOption, IMedicineMin } from '@utils/interfaces';
 import { Datalist } from '@components/ui/Datalist';
+import { IProps } from './props.interface';
 
 interface Data {
   medicines: IMedicineMin[];
 }
 
-export function MedicineDatalist() {
+export function MedicineDatalist({ handleSelection }: IProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [medicines, setMedicines] = useState<IMedicineMin[]>([]);
 
   const { isLoading, refetch } = useQuery({
-    queryKey: "medicines",
+    queryKey: 'medicines',
     queryFn: async () => {
+      if(!searchTerm) {
+        return new Promise((resolve) => resolve([]));
+      }
+
       const query = gql`query GetMedicines($search: String) {
           medicines(search: $search) {
               id, title
@@ -38,7 +43,8 @@ export function MedicineDatalist() {
     refetch();
   };
 
-  const handleSelection = (value: IDatalistOption): void => {
+  const handleDatalistSelection = (value: IDatalistOption): void => {
+    handleSelection(value);
     setMedicines([]);
   };
 
@@ -46,6 +52,6 @@ export function MedicineDatalist() {
     <Datalist options={searchTerm ? medicines : []}
               isLoading={isLoading}
               handleTyping={handleDatalistTyping}
-              handleSelection={handleSelection} />
+              handleSelection={handleDatalistSelection} />
   );
 }
