@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import React, { useState } from 'react';
 
 import { environment } from '@environments/environment';
-import { IMedicineMin } from '@utils/interfaces';
+import { IDatalistOption, IMedicineMin } from '@utils/interfaces';
 import { Datalist } from '@components/ui/Datalist';
 import { Layout } from '@components/Layout';
 import styles from './index.module.scss';
@@ -35,15 +35,24 @@ export default function Assortment() {
     }
   });
 
-  const handleDatalistTyping = (value: string) => {
+  const handleDatalistTyping = (value: string): void => {
     setSearchTerm(value);
     refetch();
-  }
+  };
+
+  const handleSelection = (value: IDatalistOption): void => {
+    setMedicines([]);
+
+    console.log(value);
+  };
 
   return (
     <Layout>
       <section className={styles.content}>
-        <Datalist options={searchTerm ? medicines : []} handleTyping={handleDatalistTyping}/>
+        <Datalist options={searchTerm ? medicines : []}
+                  isLoading={isLoading}
+                  handleTyping={handleDatalistTyping}
+                  handleSelection={handleSelection}/>
       </section>
     </Layout>
   )

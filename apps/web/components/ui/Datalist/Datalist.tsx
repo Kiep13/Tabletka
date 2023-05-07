@@ -5,7 +5,7 @@ import { MOCK_MEDICINES } from '@mocks/medicines.mock';
 import { IProps } from './props.interface';
 import styles from './datalist.module.scss';
 
-export function Datalist({ options, handleTyping }: IProps) {
+export function Datalist({ options, isLoading, handleTyping, handleSelection }: IProps) {
   const [value, setValue] = useState<string>('');
 
   const handleChange = useCallback((event: ChangeEvent) => {
@@ -17,6 +17,7 @@ export function Datalist({ options, handleTyping }: IProps) {
 
   const handleOptionSelection = useCallback((option: IDatalistOption) => {
     setValue(option.title);
+    handleSelection(option);
   }, []);
 
   const datalist = MOCK_MEDICINES.length && <section className={styles.options}>
@@ -31,6 +32,10 @@ export function Datalist({ options, handleTyping }: IProps) {
       }
     </section>
 
+  const loadingOption = <div className={styles.option}>
+    Loading...
+  </div>
+
   return (
     <section className={styles.wrapper}>
       <section className={styles.datalist}>
@@ -39,7 +44,7 @@ export function Datalist({ options, handleTyping }: IProps) {
                className={styles.input}
                value={value}
                onChange={handleChange}/>
-        {datalist}
+        {isLoading ? loadingOption : datalist}
       </section>
     </section>
   );
