@@ -12,7 +12,11 @@ export class AssortmentService {
     return this.prismaService.assortment.findMany({
       include: {
         medicine: true,
-        pharmacy: true
+        pharmacy: {
+          include: {
+            organization: true
+          }
+        }
       },
       where: {
         medicineId: {

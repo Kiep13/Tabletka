@@ -1,9 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gql, request } from 'graphql-request';
 import { useQuery } from 'react-query';
 
 import { AssortmentCard } from '@components/AssortmentCard';
-import { ASSORTMENT_MOCK } from '@mocks/assortment.mock';
 import { Layout } from '@components/Layout';
 import { MedicineDatalist } from '@components/MedicineDatalist';
 import { environment } from '@environments/environment';
@@ -18,7 +17,7 @@ interface Data {
 export default function Assortment() {
   const [searchMedicine, setSearchMedicine] = useState<IMedicineMin>();
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery<IAssortment[]>({
     queryKey: 'assortment',
     queryFn: async () => {
       if(!searchMedicine) {
@@ -39,9 +38,14 @@ export default function Assortment() {
     }
   });
 
+  useEffect(() => {
+    if(searchMedicine) {
+      refetch();
+    }
+  }, [searchMedicine]);
+
   const handleMedicineSelection = (medicine: IMedicineMin) => {
     setSearchMedicine(medicine);
-    refetch();
   };
 
   return (
@@ -49,8 +53,14 @@ export default function Assortment() {
       <section className={styles.content}>
         <MedicineDatalist handleSelection={handleMedicineSelection}/>
 
-        <section>
-          <AssortmentCard assortment={ASSORTMENT_MOCK}/>
+        <section className={styles.cards}>
+          {
+            data?.map((assortment: IAssortment) => {
+              return <div className={styles.card} key={assortment.id} >
+                <AssortmentCard assortment={assortment} />
+              </div>
+            })
+          }
         </section>
       </section>
     </Layout>

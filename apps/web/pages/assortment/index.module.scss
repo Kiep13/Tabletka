@@ -8,3 +8,14 @@
   flex-direction: column;
   gap: 15px;
 }
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: calc(50% - 5px);
+}
