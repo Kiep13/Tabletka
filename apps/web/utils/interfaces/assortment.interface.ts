@@ -5,6 +5,6 @@ export interface IAssortment {
   id;
   medicine: IMedicineMin;
   pharmacy: IPharmacyMin;
-  amount: string;
-  price: string;
+  amount: number;
+  price: number;
 }

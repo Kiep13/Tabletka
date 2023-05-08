@@ -2,6 +2,8 @@ import React, { useCallback, useState } from 'react';
 import { gql, request } from 'graphql-request';
 import { useQuery } from 'react-query';
 
+import { AssortmentCard } from '@components/AssortmentCard';
+import { ASSORTMENT_MOCK } from '@mocks/assortment.mock';
 import { Layout } from '@components/Layout';
 import { MedicineDatalist } from '@components/MedicineDatalist';
 import { environment } from '@environments/environment';
@@ -46,6 +48,10 @@ export default function Assortment() {
     <Layout>
       <section className={styles.content}>
         <MedicineDatalist handleSelection={handleMedicineSelection}/>
+
+        <section>
+          <AssortmentCard assortment={ASSORTMENT_MOCK}/>
+        </section>
       </section>
     </Layout>
   );

@@ -1,0 +1,35 @@
+@import '../../styles/colors.module';
+
+.card {
+  border: 3px solid $secondary;
+  background: lighten($secondary, 50%);
+
+  border-radius: 10px;
+  padding: 10px;
+
+  color: darken($secondary, 30%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.organizationName {
+  margin: 0;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.divider {
+  border-bottom: 2px solid $secondary;
+}
+
+.priceSection {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  border: 3px solid $secondary;
+  background: $secondary;
+}
