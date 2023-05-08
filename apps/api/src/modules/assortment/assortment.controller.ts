@@ -2,7 +2,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Assortment } from '@prisma/client';
 import { HttpCode } from '@nestjs/common';
 
-import { AssortmentCreateInput } from '@core/interfaces';
+import { AssortmentCreateInput, MedicineFilterInput } from '@core/interfaces';
 import { AssortmentService } from './assortment.service';
 
 @Resolver('Assortment')
@@ -11,13 +11,13 @@ export class AssortmentController {
 
   @Query('assortment')
   @HttpCode(200)
-  getMedicines(): Promise<Assortment[]> {
-    return this.assortmentService.getAssortment();
+  getAssortment(@Args('medicine') medicine: MedicineFilterInput): Promise<Assortment[]> {
+    return this.assortmentService.getAssortment(medicine);
   }
 
   @Mutation('addAssortment')
   @HttpCode(201)
-  createMedicine(@Args('assortment') data: AssortmentCreateInput): Promise<Assortment> {
+  createAssortment(@Args('assortment') data: AssortmentCreateInput): Promise<Assortment> {
     return this.assortmentService.createAssortment(data);
   }
 }

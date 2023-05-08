@@ -17,7 +17,7 @@ export class PharmacyController {
 
   @Mutation('addPharmacy')
   @HttpCode(201)
-  createMedicine(@Args('pharmacy') data: PharmacyCreateInput): Promise<Pharmacy> {
+  createPharmacy(@Args('pharmacy') data: PharmacyCreateInput): Promise<Pharmacy> {
     return this.pharmacyService.createPharmacy(data);
   }
 }

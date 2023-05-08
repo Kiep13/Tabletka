@@ -23,24 +23,24 @@ export default function Assortment() {
         return new Promise((resolve) => resolve([]));
       }
 
-      const query = gql`query {
-          assortment {
-              id, medicine { title }, pharmacy {address, organization {title}}, amount, price
-          }
+      const query = gql`query getAssortment($medicine: MedicineFilterInput) {
+        assortment(medicine: $medicine) {
+          id, medicine { title }, pharmacy {address, organization {title}}, amount, price
+        }
       }`;
 
-      const data = await request<Data>(environment.url, query);
+      const data = await request<Data>(environment.url, query, {
+        medicine: searchMedicine
+      });
 
       return data.assortment;
     }
   });
 
-  const handleMedicineSelection = useCallback((medicine: IMedicineMin) => {
+  const handleMedicineSelection = (medicine: IMedicineMin) => {
     setSearchMedicine(medicine);
     refetch();
-  }, []);
-
-
+  };
 
   return (
     <Layout>

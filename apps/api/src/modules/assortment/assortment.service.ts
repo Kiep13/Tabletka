@@ -1,18 +1,23 @@
 import { Assortment } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 
-import { AssortmentCreateInput } from '@core/interfaces';
+import { AssortmentCreateInput, MedicineFilterInput } from '@core/interfaces';
 import { PrismaService } from '@core/services';
 
 @Injectable()
 export class AssortmentService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  public getAssortment(): Promise<Assortment[]> {
+  public getAssortment(medicine: MedicineFilterInput): Promise<Assortment[]> {
     return this.prismaService.assortment.findMany({
       include: {
         medicine: true,
         pharmacy: true
+      },
+      where: {
+        medicineId: {
+          equals: +medicine.id
+        }
       }
     });
   }

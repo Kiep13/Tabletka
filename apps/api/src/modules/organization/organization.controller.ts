@@ -10,13 +10,13 @@ export class OrganizationController {
 
   @Query('organizations')
   @HttpCode(200)
-  getMedicines(): Promise<Organization[]> {
+  getOrganization(): Promise<Organization[]> {
     return this.organizationService.getOrganizations();
   }
 
   @Mutation('addOrganization')
   @HttpCode(201)
-  createMedicine(@Args('organization') data: Prisma.OrganizationCreateInput): Promise<Organization> {
+  createOrganization(@Args('organization') data: Prisma.OrganizationCreateInput): Promise<Organization> {
     return this.organizationService.createOrganization(data);
   }
 }
