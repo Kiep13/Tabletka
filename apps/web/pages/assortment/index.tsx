@@ -8,6 +8,7 @@ import { MedicineDatalist } from '@components/MedicineDatalist';
 import { environment } from '@environments/environment';
 import { IMedicineMin } from '@utils/interfaces';
 import { IAssortment } from '@utils/interfaces';
+import { StatefulCard } from '@components/ui/StatefulCard';
 import styles from './index.module.scss';
 
 interface Data {
@@ -17,7 +18,7 @@ interface Data {
 export default function Assortment() {
   const [searchMedicine, setSearchMedicine] = useState<IMedicineMin>();
 
-  const { data, isLoading, refetch } = useQuery<IAssortment[]>({
+  const { data, isLoading, isError, refetch } = useQuery<IAssortment[]>({
     queryKey: 'assortment',
     queryFn: async () => {
       if(!searchMedicine) {
@@ -53,15 +54,18 @@ export default function Assortment() {
       <section className={styles.content}>
         <MedicineDatalist handleSelection={handleMedicineSelection}/>
 
-        <section className={styles.cards}>
-          {
-            data?.map((assortment: IAssortment) => {
-              return <div className={styles.card} key={assortment.id} >
-                <AssortmentCard assortment={assortment} />
-              </div>
-            })
-          }
-        </section>
+        <StatefulCard isLoading={isLoading} isError={isError} isNoContent={!data}>
+          <section className={styles.cards}>
+            {
+              data?.map((assortment: IAssortment) => {
+                return <div className={styles.card} key={assortment.id} >
+                  <AssortmentCard assortment={assortment} />
+                </div>
+              })
+            }
+          </section>
+        </StatefulCard>
+
       </section>
     </Layout>
   );
