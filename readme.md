@@ -26,6 +26,12 @@ docker compose --env-file dev.env up -d
 
 After running, `pgAdmin` is available locally [here](http://localhost:5050/browser/).
 
+### 💭 Elasticsearch
+
+This project uses Elasticsearch to optimize search queries. It aslo possible access  to Kibana to view statistics and dev console
+
+In local development Kibana accessible [here](http://localhost:5601).
+
 ### 🏁 Run dev mode
 
 To run applications in developer mode, run: 

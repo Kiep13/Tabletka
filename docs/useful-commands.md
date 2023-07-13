@@ -36,3 +36,7 @@ Decrypt added files
 ```sh
 git-secret reveal
 ```
+
+### ![Elasticsearch](https://raw.githubusercontent.com/dperson/elasticsearch/master/logo.png)
+
+Full Elasticsearch documentation see [here](https://www.elastic.co/guide/en/elasticsearch/reference/index.html)
