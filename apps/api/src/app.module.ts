@@ -7,6 +7,7 @@ import { AssortmentModule } from '@modules/assortment';
 import { MedicineModule } from '@modules/medicine';
 import { OrganizationModule } from '@modules/organization';
 import { PharmacyModule } from '@modules/pharmacy';
+import { ElasticSearchModule } from '@elastic/elasticsearch.module';
 import { AppController } from './app.controller';
 
 export const ENTITY_MODULES = [
@@ -24,6 +25,7 @@ export const ENTITY_MODULES = [
       typePaths: ['./**/*.graphql'],
       playground: true
     }),
+    ElasticSearchModule,
     ...ENTITY_MODULES
   ],
   controllers: [AppController]

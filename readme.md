@@ -16,6 +16,11 @@ It applied with docker containers, which are conduct `docker-compose`.
 
 For ORM purposes this application uses `Prisma`
 
+For applying table migrations you should run:
+```sh
+prisma migrate deploy
+```
+
 ### 🐋 Docker
 
 `docker-compose.yml` stored in `docker` folder. To rollup it, move to this folder and run this:
@@ -31,6 +36,7 @@ After running, `pgAdmin` is available locally [here](http://localhost:5050/brows
 This project uses Elasticsearch to optimize search queries. It aslo possible access  to Kibana to view statistics and dev console
 
 In local development Kibana accessible [here](http://localhost:5601).
+Kibana Dev Tools accessible [here](http://localhost:5601/app/dev_tools#/console)
 
 ### 🏁 Run dev mode
 

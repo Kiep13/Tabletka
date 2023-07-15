@@ -1,3 +1,14 @@
+## ![Turorepo](https://engineering.linecorp.com/wp-content/uploads/2022/04/turborepo2.png)
+
+[Official docs](https://turbo.build/repo/docs)
+
+### Common commands
+
+Add dependancy to one of the apps
+```sh
+  yarn workspace <workspace> add <package>
+```
+
 ## ![Prisma](https://prismalens.vercel.app/header/logo-dark.svg)
 Create migrations file steps:
 
@@ -39,4 +50,5 @@ git-secret reveal
 
 ### ![Elasticsearch](https://raw.githubusercontent.com/dperson/elasticsearch/master/logo.png)
 
-Full Elasticsearch documentation see [here](https://www.elastic.co/guide/en/elasticsearch/reference/index.html)
+Full Elasticsearch documentation see [here](https://www.elastic.co/guide/en/elasticsearch/reference/index.html)<br/>
+[Official Node.js client documentation](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html)
