@@ -1,14 +1,14 @@
 import { Organization, Prisma } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
-import { ElasticsearchService } from '@nestjs/elasticsearch';
 
 import { PrismaService } from '@core/services';
+import { IndexManagerService } from '@elastic/services';
 import { Indexes } from '@elastic/enums';
 
 @Injectable()
 export class OrganizationService {
   constructor(private readonly prismaService: PrismaService,
-              private readonly elasticsearchService: ElasticsearchService) {}
+              private readonly indexManagerService: IndexManagerService) {}
 
   public getOrganizations(): Promise<Organization[]> {
     return this.prismaService.organization.findMany();
@@ -19,10 +19,7 @@ export class OrganizationService {
       data,
     });
 
-    await this.elasticsearchService.index({
-      index: Indexes.Organizations,
-      body: createdOrganization,
-    });
+    await this.indexManagerService.insertDocumentIntoIndex(Indexes.Organizations,createdOrganization);
 
     return createdOrganization;
   }

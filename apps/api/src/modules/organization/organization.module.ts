@@ -1,16 +1,14 @@
 import { Module } from '@nestjs/common';
-import { ElasticsearchModule } from '@nestjs/elasticsearch';
 
 import { CoreModule } from '@core/core.module';
+import { ElasticSearchModule } from '@elastic/elasticsearch.module';
 import { OrganizationController } from './organization.controller';
 import { OrganizationService } from './organization.service';
 
 @Module({
   imports: [
     CoreModule,
-    ElasticsearchModule.register({
-      node: 'http://localhost:9200',
-    }),
+    ElasticSearchModule
   ],
   providers: [OrganizationService, OrganizationController],
 })
