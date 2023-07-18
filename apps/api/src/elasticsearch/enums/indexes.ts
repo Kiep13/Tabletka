@@ -1,4 +1,5 @@
 export enum Indexes {
   Organizations = 'organizations',
-  Pharmacies = 'pharmacies'
+  Pharmacies = 'pharmacies',
+  Medicines = 'medicines'
 }
