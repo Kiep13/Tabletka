@@ -3,10 +3,13 @@ import { Injectable } from '@nestjs/common';
 
 import { AssortmentCreateInput, MedicineFilterInput } from '@core/interfaces';
 import { PrismaService } from '@core/services';
+import { IndexManagerService } from '@elastic/services';
+import { Indexes } from '@elastic/enums';
 
 @Injectable()
 export class AssortmentService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService,
+              private readonly indexManagerService: IndexManagerService) {}
 
   public getAssortment(medicine: MedicineFilterInput): Promise<Assortment[]> {
     return this.prismaService.assortment.findMany({
@@ -26,17 +29,17 @@ export class AssortmentService {
     });
   }
 
-  public createAssortment(data: AssortmentCreateInput): Promise<Assortment> {
-    return this.prismaService.assortment.create({
+  public async createAssortment(data: AssortmentCreateInput): Promise<Assortment> {
+    const createdAssortment = await this.prismaService.assortment.create({
       data: {
         medicine: {
           connect: {
-            id: 1
+            id: +data.medicineId
           }
         },
         pharmacy: {
           connect: {
-            id: 1
+            id: +data.pharmacyId
           }
         },
         amount: +data.amount,
@@ -47,5 +50,9 @@ export class AssortmentService {
         pharmacy: true
       }
     });
+
+    await this.indexManagerService.insertDocumentIntoIndex(Indexes.Assortment,createdAssortment);
+
+    return createdAssortment;
   }
 }
