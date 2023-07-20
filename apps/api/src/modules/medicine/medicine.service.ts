@@ -1,23 +1,30 @@
-import { Medicine, Prisma  } from '@prisma/client';
+import { Medicine, Prisma } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from '@core/services';
 import { IndexManagerService } from '@elastic/services';
 import { Indexes } from '@elastic/enums';
+import { ISearchResult } from '@elastic/interfaces';
 
 @Injectable()
 export class MedicineService {
   constructor(private readonly prismaService: PrismaService,
               private readonly indexManagerService: IndexManagerService) {}
 
-  public getMedicines(searchTerm: string): Promise<Medicine[]> {
-    return this.prismaService.medicine.findMany({
-      where: {
-        title: {
-          contains: searchTerm,
-          mode: 'insensitive',
-        },
-      }
+  public async getMedicines(searchTerm: string): Promise<Medicine[]> {
+    const searchResults = await this.indexManagerService.runQuery<ISearchResult<Medicine>>(Indexes.Medicines, {
+      query: {
+        match_phrase_prefix: {
+          title: searchTerm
+        }
+      },
+      from: 0,
+      size: 5
+    });
+
+    return searchResults.body.hits.hits.map((item) => {
+      console.log(item);
+      return item._source;
     });
   }
 

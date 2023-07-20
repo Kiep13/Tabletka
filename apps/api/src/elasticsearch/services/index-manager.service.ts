@@ -13,4 +13,11 @@ export class IndexManagerService {
       body: body,
     });
   }
+
+  public runQuery<T>(index: Indexes, queryBody) {
+    return this.elasticsearchService.search<T>({
+      index: index,
+      body: queryBody
+    });
+  }
 }
