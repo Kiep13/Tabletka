@@ -1,4 +1,5 @@
 version: "3.9"
+name: "tabletka-docker"
 services:
   postgres:
     image: "postgres:15.2"
