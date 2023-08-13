@@ -9,18 +9,6 @@ In apps folder you can see two main repo applications:
 - `api`: a [Nest.js](https://nestjs.com/) app for back-end side
 - `web`: a [Next.js](https://nextjs.org/) app for front-end side
 
-### 💾 Database
-
-This application uses `PostgreSQL` for storing data and `pgAdmin` for monitoring the previous one. 
-It applied with docker containers, which are conduct `docker-compose`.
-
-For ORM purposes this application uses `Prisma`
-
-For applying table migrations you should run:
-```sh
-prisma migrate deploy
-```
-
 ### 🐋 Docker
 
 `docker-compose.yml` stored in `docker` folder. To rollup it, move to this folder and run this:
@@ -30,6 +18,19 @@ docker compose --env-file dev.env up -d
 ```
 
 After running, `pgAdmin` is available locally [here](http://localhost:5050/browser/).
+
+
+### 💾 Database
+
+This application uses `PostgreSQL` for storing data and `pgAdmin` for monitoring the previous one.
+It applied with docker containers, which are conduct `docker-compose`.
+
+For ORM purposes this application uses `Prisma`
+
+For applying table migrations you should run:
+```sh
+prisma migrate deploy
+```
 
 ### 💭 Elasticsearch
 
