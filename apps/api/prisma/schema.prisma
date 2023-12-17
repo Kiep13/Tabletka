@@ -4,8 +4,7 @@ datasource db {
 }
 
 generator client {
-  provider        = "services-client-js"
-  binaryTargets   = "native"
+  provider = "prisma-client-js"
 }
 
 enum PharmaceuticalForm {
